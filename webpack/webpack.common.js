@@ -1,8 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (options) {
    return {
@@ -13,32 +12,33 @@ module.exports = function (options) {
          extensions: ['.js', '.ts', '.jsx', '.tsx'],
       },
       module: {
-         loaders: [
-            {
-                  test: /\.ts$/,
-                  enforce: 'pre',
-                  loader: 'tslint-loader',
-                  // options: { 
-                  //       typeCheck: true
-                  // }
-            },
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-            {
-               test: /\.scss$/,
-               loader: ExtractTextPlugin.extract('css-loader!sass-loader')
-            },
-            {
-               test: /\.(eot|svg|ttf|woff|woff2)$/,
-               loader: 'file-loader?name=public/fonts/[name].[ext]'
-            }
-         ],
+         // loaders: [
+         //    {
+         //          test: /\.ts$/,
+         //          enforce: 'pre',
+         //          loader: 'tslint-loader',
+         //          // options: { 
+         //          //       typeCheck: true
+         //          // }
+         //    },
+         //    { test: /\.tsx?$/, loader: "ts-loader" },
+         //    { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+         //    {
+         //       test: /\.(eot|svg|ttf|woff|woff2)$/,
+         //       loader: 'file-loader?name=public/fonts/[name].[ext]'
+         //    }
+         // ],
+         rules: [
+              {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
+              },
+        ]
       },
       plugins: [
-         new ExtractTextPlugin({
+         new MiniCssExtractPlugin({
             filename: '[name].[hash:8].css',
-            allChunks: true
-         }),
-         new CheckerPlugin()]
+         })
+      ]
    }
 };
