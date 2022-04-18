@@ -22,7 +22,9 @@ module.exports = merge(common, {
           chunkFilename: '[id].chunk.js'
     },
     plugins: [
-          new StyleLintPlugin(),
+          new StyleLintPlugin({
+              extensions: ['scss', 'sass'],
+          }),
           new HtmlWebpackPlugin({
                 title: 'SIMDE (Development mode)',
                 template: 'src/index.html'

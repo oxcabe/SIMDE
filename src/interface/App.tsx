@@ -1,6 +1,6 @@
 import * as React from "react";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { translate } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import LandingPageComponent from "./components/LandingPage/LandingPageComponent";
 import ProjectPage from "./components/LandingPage/ProjectPageComponent";
 
@@ -27,4 +27,4 @@ const Structure = () => (
     </div>
 );
 
-export default translate('common', { wait: true })(App);
+export default App;

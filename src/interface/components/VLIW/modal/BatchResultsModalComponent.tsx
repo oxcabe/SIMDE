@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 import { bindActionCreators } from 'redux';
 import {

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { PhotoshopPicker } from 'react-color';
 import SuperescalarIntegration from '../../../integration/superescalar-integration';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 class ReorderBufferComponent extends React.Component<any, any> {
     constructor(props: any) {
@@ -45,6 +44,8 @@ class ReorderBufferComponent extends React.Component<any, any> {
             transform: 'translateX(-50%) translateY(-50%)',
             left: '50%'
         };
+        const [t, i18n] = useTranslation();
+
         return (
             <div className="smd-reorder_buffer panel panel-default reorder-zone">
                 <div className="panel-heading">{'ReorderBuffer'}</div>
@@ -112,4 +113,4 @@ class ReorderBufferComponent extends React.Component<any, any> {
     }
 }
 
-export default translate('common', { wait: true })(ReorderBufferComponent);
+export default ReorderBufferComponent;

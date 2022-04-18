@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import * as FileReaderInput from 'react-file-reader-input';
 
 import { bindActionCreators } from 'redux';
 import { toggleSuperescalarLoadContentModal } from '../../../actions/modals';
@@ -12,7 +10,7 @@ import { ContentIntegration} from '../../../../integration/content-integration';
 
 class SuperescalarLoadContentModalComponent extends React.Component<any, any> {
 
-      constructor(public props: any, public state: any) {
+      constructor(public props: any) {
             super(props);
 
             this.close = this.close.bind(this);
@@ -48,6 +46,7 @@ class SuperescalarLoadContentModalComponent extends React.Component<any, any> {
       }
 
       render() {
+          const [t, i18n] = useTranslation();
             return (<Modal className="smd-load_content_modal" show={this.props.isSuperescalarLoadContentModalOpen} onHide={this.close}>
             <Modal.Header closeButton>
                 <Modal.Title>{t('loadContentModal.title')}</Modal.Title>
@@ -62,9 +61,9 @@ class SuperescalarLoadContentModalComponent extends React.Component<any, any> {
 
             <Modal.Footer className="smd-load_modal-footer">
                 <div className="smd-load_modal-file_input">
-                    <FileReaderInput as='text' onChange={this.handleInputFileChange} accept='.mem'>
+                    <FileInput as='text' onChange={this.handleInputFileChange} accept='.mem'>
                         <Button className='btn btn-primary'>{t('commonButtons.uploadFromFile')}</Button>
-                    </FileReaderInput>
+                    </FileInput>
                 </div>
                 <div className="smd-load_modal-actions">
                     <Button onClick={this.close}>{t('commonButtons.close')}</Button>
@@ -84,4 +83,4 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
       return { actions: bindActionCreators({toggleSuperescalarLoadContentModal}, dispatch)};
 } 
-export default translate('common', { wait: true })(connect(mapStateToProps, mapDispatchToProps)(SuperescalarLoadContentModalComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(SuperescalarLoadContentModalComponent);

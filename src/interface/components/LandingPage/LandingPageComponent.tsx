@@ -1,8 +1,9 @@
 import * as React from "react";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import projectpage from "./ProjectPageComponent";
-import { translate } from "react-i18next";
-import { t } from 'i18next';
+import { useTranslation } from "react-i18next";
+
+const [t, i18n] = useTranslation();
 
 const LandingPageComponent = (props) => (
   <div className="page">
@@ -53,4 +54,4 @@ const LandingPageComponent = (props) => (
     </div>
 );
 
-export default translate('common', { wait: true })(LandingPageComponent);
+export default LandingPageComponent;

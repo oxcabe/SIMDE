@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { generateIntervalFromImput } from '../../../utils/interval';
 
-
 class IntervalModalComponent extends React.Component<any, any> {
 
-    constructor(public props: any, public state: any) {
+    constructor(public props: any) {
         super(props);
         this.close = this.close.bind(this);
         this.accept = this.accept.bind(this);
@@ -45,6 +43,8 @@ class IntervalModalComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (<Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
                 <Modal.Title>{t(this.props.title)}</Modal.Title>
@@ -75,4 +75,4 @@ class IntervalModalComponent extends React.Component<any, any> {
     }
 }
 
-export default translate('common', { wait: true })(IntervalModalComponent);
+export default IntervalModalComponent;

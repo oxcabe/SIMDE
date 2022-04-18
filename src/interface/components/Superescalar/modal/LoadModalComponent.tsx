@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { toggleLoadModal } from '../../../actions/modals';
 import { bindActionCreators } from 'redux';
-import * as FileReaderInput from 'react-file-reader-input';
 
 import SuperescalarIntegration from '../../../../integration/superescalar-integration';
 import { Code } from '../../../../core/Common/Code';
@@ -46,6 +44,8 @@ export class LoadModalComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (<Modal className="smd-load_modal" show={this.props.isLoadModalOpen} onHide={this.close}>
             <Modal.Header closeButton>
                 <Modal.Title>{t('loadModal.title')}</Modal.Title>
@@ -81,9 +81,9 @@ LOOP:
 
             <Modal.Footer className="smd-load_modal-footer">
                 <div className="smd-load_modal-file_input">
-                    <FileReaderInput as='text' onChange={this.handleInputFileChange} accept='.pla'>
+                    <FileInput as='text' onChange={this.handleInputFileChange} accept='.pla'>
                         <Button className='btn btn-primary'>{t('commonButtons.uploadFromFile')}</Button>
-                    </FileReaderInput>
+                    </FileInput>
                 </div>
                 <div className="smd-load_modal-actions">
                     <Button onClick={this.close}>{t('commonButtons.close')}</Button>
@@ -104,4 +104,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({toggleLoadModal}, dispatch)};
 }
 
-export default translate('common', { wait: true })(connect(mapStateToProps, mapDispatchToProps)(LoadModalComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(LoadModalComponent);

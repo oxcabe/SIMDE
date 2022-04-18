@@ -3,8 +3,7 @@ import * as React from 'react';
 import FunctionalUnitComponent from '../FunctionalUnitComponent';
 import CodeComponent from '../CodeComponent';
 
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,6 +19,8 @@ class GeneralVLIWTabComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (
             <div className="smd-general_tab">
                 <div className="smd-general_tab-code">
@@ -162,6 +163,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default translate('common')(
-    connect(mapStateToProps, mapDispatchToProps)(GeneralVLIWTabComponent)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralVLIWTabComponent);

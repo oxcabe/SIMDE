@@ -1,8 +1,7 @@
 import * as React from 'react';
 import IntervalModalComponent from './modal/IntervalModalComponent';
 
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 class RegisterComponent extends React.Component<any, any> {
 
@@ -36,7 +35,10 @@ class RegisterComponent extends React.Component<any, any> {
       }
 
       render() {
-            const renderCondition = this.props.visibleRange && this.props.data && this.props.data.length > 0;
+          const [t, i18n] = useTranslation();
+          const renderCondition = this.props.visibleRange && this.props.data &&
+              this.props.data.length > 0;
+
             return (
                   <div className='smd-register'>
                         {
@@ -90,4 +92,4 @@ class RegisterComponent extends React.Component<any, any> {
       }
 }
 
-export default translate('common')(RegisterComponent);
+export default RegisterComponent;

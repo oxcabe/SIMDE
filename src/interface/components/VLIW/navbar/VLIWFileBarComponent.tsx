@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { toggleLoadModal, toggleAuthorModal, toggleOptionsModal, toggleVliwConfigModal, toggleBatchModal, toggleVliwLoadContentModal } from '../../../actions/modals';
 import { bindActionCreators } from 'redux';
@@ -10,18 +9,19 @@ import { viewBasicBlocks } from '../../../actions';
 class VLIWFileBarComponent extends React.Component<any, any> {
     private color: boolean;
 
-    constructor(public props: any, public state: any) {
+    constructor(public props: any) {
         super(props);
         this.color = false;
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (<div className='smd-filebar'>
                     <DropdownButton
                         title={t('fileBar.file.name')}
                         key={'dropdown-load'}
                         id={'dropdown-load'}
-                        noCaret
                     >
                         <MenuItem eventKey="1" onClick={() => { this.props.actions.toggleLoadModal(true) }}>{t('fileBar.file.load')}</MenuItem>
                     </DropdownButton>
@@ -29,7 +29,6 @@ class VLIWFileBarComponent extends React.Component<any, any> {
                         title={t('fileBar.view.name')}
                         key={'dropdown-view'}
                         id={'dropdown-view'}
-                        noCaret
                     >
                         <MenuItem eventKey="1" onClick={() => {
                             this.color = !this.color;
@@ -40,7 +39,6 @@ class VLIWFileBarComponent extends React.Component<any, any> {
                         title={t('fileBar.config.name')}
                         key={'dropdown-options'}
                         id={'dropdown-options'}
-                        noCaret
                     >
                         <MenuItem eventKey="1" onClick={() => { this.props.actions.toggleVliwConfigModal(true)}}>
                             {t('fileBar.config.vliw')}
@@ -53,7 +51,6 @@ class VLIWFileBarComponent extends React.Component<any, any> {
                         title={t('fileBar.experimentation.name')}
                         key={'dropdown-experimentation'}
                         id={'dropdown-experimentation'}
-                        noCaret
                     >
                         <MenuItem eventKey="2" onClick={() => { this.props.actions.toggleBatchModal(true) }}>
                             {t('fileBar.experimentation.batch')}
@@ -63,7 +60,6 @@ class VLIWFileBarComponent extends React.Component<any, any> {
                         title={t('fileBar.help.name')}
                         key={'dropdown-help'}
                         id={'dropdown-help'}
-                        noCaret
                     >
                         <MenuItem eventKey="1" href="https://etsiiull.gitbooks.io/simde/">
                             {t('fileBar.help.docs')}
@@ -94,4 +90,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default translate('common', { wait: true })(connect(mapStateToProps, mapDispatchToProps)(VLIWFileBarComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(VLIWFileBarComponent);

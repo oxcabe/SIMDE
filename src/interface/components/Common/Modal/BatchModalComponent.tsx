@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { toggleOptionsModal, toggleBatchModal } from '../../../actions/modals';
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import SuperescalarIntegration from '../../../../integration/superescalar-integr
 import { SUPERESCALAR_CONFIG, BATCH_CONFIG } from '../../../../core/Constants';
 
 class BatchModalComponent extends React.Component<any, any> {
-    constructor(public props: any, public state: any) {
+    constructor(public props: any) {
         super(props);
         this.state = {
             replications: 10,
@@ -62,6 +61,8 @@ class BatchModalComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (
             <Modal show={this.props.isBatchModalOpen} onHide={this.close}>
                 <Modal.Header closeButton>
@@ -154,6 +155,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({ toggleBatchModal }, dispatch) };
 }
 
-export default translate('common', { wait: true })(
-    connect(mapStateToProps, mapDispatchToProps)(BatchModalComponent)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BatchModalComponent);

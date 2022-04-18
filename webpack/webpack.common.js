@@ -12,14 +12,9 @@ module.exports = {
     module: {
        rules: [
           {
-                test: /\.ts$/,
-                enforce: 'pre',
-                loader: 'tslint-loader',
-                // options: { 
-                //       typeCheck: true
-                // }
+              test: /\.s[ac]ss$/i,
+              use: ['style-loader', 'css-loader', 'sass-loader'],
           },
-          { test: /\.css$/i, loader: "css-loader" },
           { test: /\.tsx?$/, loader: "ts-loader" },
           { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
           {

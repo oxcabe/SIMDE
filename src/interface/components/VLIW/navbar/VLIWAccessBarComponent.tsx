@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import VliwIntegration from '../../../../integration/vliw-integration';
 
@@ -39,6 +38,8 @@ class VLIWAccessBarComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (
             <div className="smd-access_bar">
                 <a onClick={this.play}>
@@ -84,6 +85,4 @@ const mapStateToProps = state => {
         cycle: state.cycle
     };
 };
-export default translate('common', { wait: true })(
-    connect(mapStateToProps)(VLIWAccessBarComponent)
-);
+export default connect(mapStateToProps)(VLIWAccessBarComponent)

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import {
     toggleOptionsModal,
@@ -12,7 +11,7 @@ import { connect } from 'react-redux';
 import SuperescalarIntegration from '../../../../integration/superescalar-integration';
 
 class BatchResultsModalComponent extends React.Component<any, any> {
-    constructor(props: any, state: any) {
+    constructor(props: any) {
         super(props);
 
         this.close = this.close.bind(this);
@@ -23,6 +22,8 @@ class BatchResultsModalComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (
             <Modal
                 show={this.props.isBatchResultsModalOpen}
@@ -97,6 +98,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({ clearBatchResults }, dispatch) };
 }
 
-export default translate('common', { wait: true })(
-    connect(mapStateToProps, mapDispatchToProps)(BatchResultsModalComponent)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BatchResultsModalComponent);

@@ -6,10 +6,9 @@ import CodeComponent from '../CodeComponent';
 import ReserveStationComponent from '../ReserveStationComponent';
 import { ROBMapperComponent } from '../ROBMapperComponent';
 import ReorderBufferComponent from '../ReorderBufferComponent';
-import JumpPredictionComponent from '../JumPredictionComponent';
+import JumpPredictionComponent from '../JumpPredictionComponent';
 
-import { translate } from 'react-i18next';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,6 +26,8 @@ class GeneralTabComponent extends React.Component<any, any> {
     }
 
     render() {
+        const [t, i18n] = useTranslation();
+
         return (
             <div className="smd-general_tab">
                 <div className="smd-general_tab-code">
@@ -247,6 +248,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default translate('common')(
-    connect(mapStateToProps, mapDispatchToProps)(GeneralTabComponent)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralTabComponent);

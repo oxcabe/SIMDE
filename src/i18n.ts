@@ -1,15 +1,17 @@
-import * as _i18n from 'i18next';
+import i18next from 'i18next';
+
 import XHR from 'i18next-xhr-backend/dist/es/index.js';
 import LngDetector from 'i18next-browser-languagedetector/dist/es/index.js';
+import { initReactI18next } from "react-i18next";
 
-let i18n = _i18n
+i18next.use(initReactI18next)
 .use(XHR)
 .use(LngDetector)
 .init({
     fallbackLng: 'en',
-    react: {
-        wait: true
-    },
+    // react: {
+    //     wait: true
+    // },
     backend: {
         loadPath: 'locales/{{lng}}/{{ns}}.json'
     },
@@ -32,4 +34,4 @@ let i18n = _i18n
     }
 });
 
-export default i18n;
+export default i18next;
