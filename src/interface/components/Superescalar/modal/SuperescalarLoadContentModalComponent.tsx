@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as FileInput from 'react-file-reader-input';
 import { Modal, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';

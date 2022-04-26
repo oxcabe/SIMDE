@@ -5,7 +5,8 @@ import { toggleLoadModal, toggleAuthorModal, toggleOptionsModal, toggleSuperConf
     toggleBatchModal, toggleSuperescalarLoadContentModal } from '../../../actions/modals';
 
 import { bindActionCreators } from 'redux';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
+import Dropdown from "react-bootstrap/Dropdown";
 import { viewBasicBlocks } from '../../../actions';
 
 class FileBarComponent extends React.Component<any, any> {
@@ -19,57 +20,57 @@ class FileBarComponent extends React.Component<any, any> {
     render() {
         const [t, i18n] = useTranslation();
 
-        return (<div className='smd-filebar'>
+        return (<Dropdown className='smd-filebar'>
                     <DropdownButton
                         title={t('fileBar.file.name')}
                         key={'dropdown-load'}
                         id={'dropdown-load'}
                     >
-                        <MenuItem eventKey="1" onClick={() => { this.props.actions.toggleLoadModal(true) }}>{t('fileBar.file.load')}</MenuItem>
+                        <Dropdown.Item eventKey="1" onClick={() => { this.props.actions.toggleLoadModal(true) }}>{t('fileBar.file.load')}</Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         title={t('fileBar.view.name')}
                         key={'dropdown-view'}
                         id={'dropdown-view'}
                     >
-                        <MenuItem eventKey="1" onClick={() => {
+                        <Dropdown.Item eventKey="1" onClick={() => {
                             this.color = !this.color;
                             this.props.actions.viewBasicBlocks(this.color);
-                        }}>{t('fileBar.view.basicBlocks')}</MenuItem>
+                        }}>{t('fileBar.view.basicBlocks')}</Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         title={t('fileBar.config.name')}
                         key={'dropdown-options'}
                         id={'dropdown-options'}
                     >
-                        <MenuItem eventKey="1" onClick={() => { this.props.actions.toggleSuperConfigModal(true)}}>
+                        <Dropdown.Item eventKey="1" onClick={() => { this.props.actions.toggleSuperConfigModal(true)}}>
                             {t('fileBar.config.superescalar')}
-                        </MenuItem>
-                        <MenuItem eventKey="1" onClick={() => { this.props.actions.toggleSuperescalarLoadContentModal(true)}}>
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="1" onClick={() => { this.props.actions.toggleSuperescalarLoadContentModal(true)}}>
                             {t('fileBar.config.content')}
-                        </MenuItem>
+                        </Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         title={t('fileBar.experimentation.name')}
                         key={'dropdown-experimentation'}
                         id={'dropdown-experimentation'}
                     >
-                        <MenuItem eventKey="2" onClick={() => { this.props.actions.toggleBatchModal(true) }}>
+                        <Dropdown.Item eventKey="2" onClick={() => { this.props.actions.toggleBatchModal(true) }}>
                             {t('fileBar.experimentation.batch')}
-                        </MenuItem>
+                        </Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         title={t('fileBar.help.name')}
                         key={'dropdown-help'}
                         id={'dropdown-help'}
                     >
-                        <MenuItem eventKey="1" href="https://etsiiull.gitbooks.io/simde/">
+                        <Dropdown.Item eventKey="1" href="https://etsiiull.gitbooks.io/simde/">
                             {t('fileBar.help.docs')}
-                        </MenuItem>
+                        </Dropdown.Item>
 
-                        <MenuItem eventKey="2" onClick={() => { this.props.actions.toggleAuthorModal(true) }}>{t('fileBar.help.about')}</MenuItem>
+                        <Dropdown.Item eventKey="2" onClick={() => { this.props.actions.toggleAuthorModal(true) }}>{t('fileBar.help.about')}</Dropdown.Item>
                     </DropdownButton>
-        </div>);
+        </Dropdown>);
     }
 }
 

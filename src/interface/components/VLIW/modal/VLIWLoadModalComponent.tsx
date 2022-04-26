@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as FileInput from 'react-file-reader-input';
 import { Modal, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -8,9 +9,6 @@ import { bindActionCreators } from 'redux';
 import VLIWIntegration from '../../../../integration/vliw-integration';
 import { Code } from '../../../../core/Common/Code';
 import { VLIWCode } from '../../../../core/VLIW/VLIWCode';
-
-declare class FileInput extends React.Component<FileInput.Props> {
-}
 
 export class VLIWLoadModalComponent extends React.Component<any, any> {
 
