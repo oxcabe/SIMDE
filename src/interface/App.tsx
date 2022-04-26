@@ -7,7 +7,6 @@ import ProjectPage from "./components/LandingPage/ProjectPageComponent";
 import { SuperescalarComponent } from "./components/Superescalar/SuperescalarComponent";
 import { VLIWComponent } from "./components/VLIW/VLIWComponent";
 
-
 class App extends React.Component<any, any> {
    render() {
       return (
