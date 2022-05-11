@@ -17,11 +17,6 @@ module.exports = merge(common, {
         compress: true,
         port:9060,
     },
-    output: {
-          path: path.resolve('target/www'),
-          filename: '[name].bundle.js',
-          chunkFilename: '[id].chunk.js'
-    },
     plugins: [
           new StyleLintPlugin({
               extensions: ['scss', 'sass'],

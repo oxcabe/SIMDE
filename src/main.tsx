@@ -5,10 +5,9 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import './i18n'; // initialized i18next instance
+import './main.scss';
 
 import App from './interface/App';
-
-const styles = require('./main.scss');
 
 /*
  * Here is where the react endpoint appears
