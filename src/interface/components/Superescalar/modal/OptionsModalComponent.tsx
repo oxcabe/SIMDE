@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { toggleOptionsModal } from '../../../actions/modals';
 import { connect } from 'react-redux';
@@ -35,18 +35,16 @@ class OptionsModalComponent extends React.Component<any, any> {
     }
 
     render() {
-        const [t, i18n] = useTranslation();
-
         return (
             <Modal show={this.props.isOptionsModalOpen} onHide={this.close}>
             <Modal.Header closeButton>
-                <Modal.Title>{t('optionsModal.title')}</Modal.Title>
+                <Modal.Title>{this.props.t('optionsModal.title')}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form className='form form-horizontal'>
                     <div className='form-group'>
                         <div className='col-sm-4'>
-                            <label htmlFor='cacheFailPercentage' className='control-label'>{t('optionsModal.cacheFail')}
+                            <label htmlFor='cacheFailPercentage' className='control-label'>{this.props.t('optionsModal.cacheFail')}
                             </label>
                         </div>
                         <div className='col-sm-8'>
@@ -64,8 +62,8 @@ class OptionsModalComponent extends React.Component<any, any> {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={this.close}>{t('commonButtons.close')}</Button>
-                <Button className='btn btn-primary' onClick={this.setOptions}>{t('commonButtons.save')}</Button>
+                <Button onClick={this.close}>{this.props.t('commonButtons.close')}</Button>
+                <Button className='btn btn-primary' onClick={this.setOptions}>{this.props.t('commonButtons.save')}</Button>
             </Modal.Footer>
         </Modal>);
     }
@@ -81,4 +79,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({toggleOptionsModal}, dispatch)};
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps)(OptionsModalComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(OptionsModalComponent));

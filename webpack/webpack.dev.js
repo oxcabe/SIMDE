@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = merge(common, {
@@ -25,9 +25,11 @@ module.exports = merge(common, {
                 title: 'SIMDE (Development mode)',
                 template: 'src/index.html'
           }),
-          new CopyWebpackPlugin([
-                { from: 'src/i18n' }
-          ]),
+          new CopyPlugin({
+              patterns: [
+                  { from: 'src/i18n' }
+              ]
+          }),
           new webpack.DefinePlugin({
               'process.env': {
                  'NODE_ENV': JSON.stringify('development')

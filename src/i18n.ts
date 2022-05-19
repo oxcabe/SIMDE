@@ -15,7 +15,7 @@ i18n
         loadPath: 'locales/{{lng}}/{{ns}}.json'
     },
     react: { 
-      useSuspense: false
+      useSuspense: true
     },
     // have a common namespace used around the full app
     ns: ['common'],

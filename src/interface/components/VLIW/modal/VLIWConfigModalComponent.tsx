@@ -19,9 +19,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
         this.handleChange = this.handleChange.bind(this);
         this.setDefault = this.setDefault.bind(this);
         this.saveVliwConfig = this.saveVliwConfig.bind(this);
-    }
 
-    componentWillMount() {
         this.setState({
             vliwConfig: {
                 integerSumQuantity: 2,

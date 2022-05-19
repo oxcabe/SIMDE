@@ -8,7 +8,7 @@ import { ROBMapperComponent } from '../ROBMapperComponent';
 import ReorderBufferComponent from '../ReorderBufferComponent';
 import JumpPredictionComponent from '../JumpPredictionComponent';
 
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,8 +26,6 @@ class GeneralTabComponent extends React.Component<any, any> {
     }
 
     render() {
-        const [t, i18n] = useTranslation();
-
         return (
             <div className="smd-general_tab">
                 <div className="smd-general_tab-code">
@@ -101,7 +99,7 @@ class GeneralTabComponent extends React.Component<any, any> {
                     <div className="smd-general_tab-simulation_center">
                         <div className="panel panel-default inside-bar panel--stack">
                             <div className="panel-heading">
-                                {t('Reserve Stations')}
+                                {this.props.t('Reserve Stations')}
                             </div>
                             <div className="panel-body">
                                 <ReserveStationComponent
@@ -133,7 +131,7 @@ class GeneralTabComponent extends React.Component<any, any> {
                     </div>
                     <div className="smd-general_tab-simulation_right">
                         <div className="panel panel-default inside-bar panel--stack">
-                            <div className="panel-heading">{t('UF')}</div>
+                            <div className="panel-heading">{this.props.t('UF')}</div>
                             <div className="panel-body">
                                 <FunctionalUnitComponent
                                     title="+Entera"
@@ -248,4 +246,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralTabComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(GeneralTabComponent));

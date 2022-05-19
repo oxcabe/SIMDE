@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import SuperescalarIntegration from '../../../../integration/superescalar-integration';
 
@@ -38,8 +38,6 @@ class AccessBarComponent extends React.Component<any, any> {
     }
 
     render() {
-        const [t, i18n] = useTranslation();
-
         return (
             <div className="smd-access_bar">
                 <a onClick={this.play}>
@@ -59,13 +57,13 @@ class AccessBarComponent extends React.Component<any, any> {
                 </a>
                 <div className="smd-cycle">
                     <label htmlFor="cycle" className="smd-cycle_label">
-                        {t('accessBar.cycle')}
+                        {this.props.t('accessBar.cycle')}
                     </label>
                     <span className="smd-cycle_value">{this.props.cycle}</span>
                 </div>
                 <span className="smd-speed">
                     <label className="smd-speed_label" htmlFor="velocidad">
-                        {t('accessBar.speed')}
+                        {this.props.t('accessBar.speed')}
                     </label>
                     <input
                         type="number"
@@ -85,4 +83,4 @@ const mapStateToProps = state => {
         cycle: state.cycle
     };
 };
-export default connect(mapStateToProps)(AccessBarComponent);
+export default connect(mapStateToProps)(withTranslation()(AccessBarComponent));

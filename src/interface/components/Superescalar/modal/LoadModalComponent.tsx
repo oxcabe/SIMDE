@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as FileInput from 'react-file-reader-input';
+import FileReaderInput from 'react-file-reader-input';
 import { Modal, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { toggleLoadModal } from '../../../actions/modals';
 import { bindActionCreators } from 'redux';
@@ -11,13 +11,10 @@ import { Code } from '../../../../core/Common/Code';
 
 export class LoadModalComponent extends React.Component<any, any> {
 
-    constructor(public props: any) {
+    constructor(public props: any, public state: any) {
         super(props);
         this.close = this.close.bind(this);
         this.loadCode = this.loadCode.bind(this);
-        this.state = {
-            error: ''
-        }
     }
 
     close() {
@@ -45,11 +42,10 @@ export class LoadModalComponent extends React.Component<any, any> {
     }
 
     render() {
-        const [t, i18n] = useTranslation();
-
-        return (<Modal className="smd-load_modal" show={this.props.isLoadModalOpen} onHide={this.close}>
+        return (
+        <Modal className="smd-load_modal" show={this.props.isLoadModalOpen} onHide={this.close}>
             <Modal.Header closeButton>
-                <Modal.Title>{t('loadModal.title')}</Modal.Title>
+                <Modal.Title>{this.props.t('loadModal.title')}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <textarea id='codeInput' defaultValue={`18
@@ -82,13 +78,13 @@ LOOP:
 
             <Modal.Footer className="smd-load_modal-footer">
                 <div className="smd-load_modal-file_input">
-                    <FileInput as='text' onChange={this.handleInputFileChange} accept='.pla'>
-                        <Button className='btn btn-primary'>{t('commonButtons.uploadFromFile')}</Button>
-                    </FileInput>
+                    <FileReaderInput as='text' onChange={this.handleInputFileChange} accept='.pla'>
+                        <Button className='btn btn-primary'>{this.props.t('commonButtons.uploadFromFile')}</Button>
+                    </FileReaderInput>
                 </div>
                 <div className="smd-load_modal-actions">
-                    <Button onClick={this.close}>{t('commonButtons.close')}</Button>
-                    <Button className='btn btn-primary' onClick={this.loadCode}>{t('loadModal.load')}</Button>
+                    <Button onClick={this.close}>{this.props.t('commonButtons.close')}</Button>
+                    <Button className='btn btn-primary' onClick={this.loadCode}>{this.props.t('loadModal.load')}</Button>
                 </div>
             </Modal.Footer>
         </Modal>);
@@ -105,4 +101,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({toggleLoadModal}, dispatch)};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoadModalComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(LoadModalComponent));

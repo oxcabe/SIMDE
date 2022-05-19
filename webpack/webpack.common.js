@@ -28,14 +28,14 @@ module.exports = {
               "sass-loader",
             ],
           },
-          {
-            test: /\.(eot|svg|ttf|woff|woff2)$/,
-            loader: 'file-loader',
+          // {
+          //   test: /\.(eot|svg|ttf|woff|woff2)$/,
+          //   loader: 'file-loader',
 
-            options: {
-                name: "public/fonts/[name].[ext]",
-            },
-          },
+          //   options: {
+          //       name: "public/fonts/[name].[ext]",
+          //   },
+          // },
        ],
     },
     plugins: [

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { bindActionCreators } from 'redux';
 import { toggleOptionsModal, toggleBatchModal } from '../../../actions/modals';
 import { connect } from 'react-redux';
@@ -61,12 +61,10 @@ class BatchModalComponent extends React.Component<any, any> {
     }
 
     render() {
-        const [t, i18n] = useTranslation();
-
         return (
             <Modal show={this.props.isBatchModalOpen} onHide={this.close}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{t('batchModal.title')}</Modal.Title>
+                    <Modal.Title>{this.props.t('batchModal.title')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="form form-horizontal">
@@ -75,7 +73,7 @@ class BatchModalComponent extends React.Component<any, any> {
                                 htmlFor="replications"
                                 className="control-label col-sm-4"
                             >
-                                {t('batchModal.replications')}
+                                {this.props.t('batchModal.replications')}
                             </label>
                             <div className="col-sm-8">
                                 <input
@@ -94,7 +92,7 @@ class BatchModalComponent extends React.Component<any, any> {
                                 htmlFor="cacheFailPercentage"
                                 className="control-label col-sm-4"
                             >
-                                {t('batchModal.cacheFailPercentage')}
+                                {this.props.t('batchModal.cacheFailPercentage')}
                             </label>
                             <div className="col-sm-8">
                                 <input
@@ -113,7 +111,7 @@ class BatchModalComponent extends React.Component<any, any> {
                                 htmlFor="cacheFailLatency"
                                 className="control-label col-sm-4"
                             >
-                                {t('batchModal.cacheFailLatency')}
+                                {this.props.t('batchModal.cacheFailLatency')}
                             </label>
                             <div className="col-sm-8">
                                 <input
@@ -131,13 +129,13 @@ class BatchModalComponent extends React.Component<any, any> {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.close}>
-                        {t('commonButtons.close')}
+                        {this.props.t('commonButtons.close')}
                     </Button>
                     <Button
                         className="btn btn-primary"
                         onClick={this.setOptions}
                     >
-                        {t('commonButtons.launch')}
+                        {this.props.t('commonButtons.launch')}
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -155,4 +153,4 @@ function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({ toggleBatchModal }, dispatch) };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BatchModalComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(BatchModalComponent));

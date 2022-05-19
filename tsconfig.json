@@ -6,6 +6,7 @@
       "rootDir": "src",
       "moduleResolution": "node",
       "module": "es6",
+      "allowSyntheticDefaultImports": true,
       "strictNullChecks": false,
       "declaration": true,
       "importHelpers": true,

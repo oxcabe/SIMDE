@@ -12,14 +12,10 @@ class IntervalModalComponent extends React.Component<any, any> {
         this.accept = this.accept.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
-        this.state = { value: '' };
-    }
-
-    componentWillMount() {
         this.setState({ showModal: false });
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(nextProps) {
         this.setState({ showModal: nextProps.open });
     }
 

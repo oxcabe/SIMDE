@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PhotoshopPicker } from 'react-color';
 import SuperescalarIntegration from '../../../integration/superescalar-integration';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 class ReorderBufferComponent extends React.Component<any, any> {
     constructor(props: any) {
@@ -44,7 +44,6 @@ class ReorderBufferComponent extends React.Component<any, any> {
             transform: 'translateX(-50%) translateY(-50%)',
             left: '50%'
         };
-        const [t, i18n] = useTranslation();
 
         return (
             <div className="smd-reorder_buffer panel panel-default reorder-zone">
@@ -60,16 +59,16 @@ class ReorderBufferComponent extends React.Component<any, any> {
                             <div className="smd-table-header_title">#</div>
                             <div className="smd-table-header_title">Inst</div>
                             <div className="smd-table-header_title">
-                                {t('reorderBuffer.Destiny')}
+                                {this.props.t('reorderBuffer.Destiny')}
                             </div>
                             <div className="smd-table-header_title">
-                                {t('reorderBuffer.Value')}
+                                {this.props.t('reorderBuffer.Value')}
                             </div>
                             <div className="smd-table-header_title">
-                                {t('reorderBuffer.A')}
+                                {this.props.t('reorderBuffer.A')}
                             </div>
                             <div className="smd-table-header_title">
-                                {t('reorderBuffer.Stage')}
+                                {this.props.t('reorderBuffer.Stage')}
                             </div>
                         </div>
                         <div className="smd-table-body">
@@ -113,4 +112,4 @@ class ReorderBufferComponent extends React.Component<any, any> {
     }
 }
 
-export default ReorderBufferComponent;
+export default withTranslation()(ReorderBufferComponent);
