@@ -14,10 +14,6 @@ class IntervalModalComponent extends React.Component<any, any> {
         this.state = { showModal: false };
     }
 
-    componentDidUpdate(nextProps) {
-        this.setState({ showModal: nextProps.open });
-    }
-
     handleChange(event) {
         this.setState({ value: event.target.value, error: '' });
     }
