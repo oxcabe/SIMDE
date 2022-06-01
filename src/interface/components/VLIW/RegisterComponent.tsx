@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IntervalModalComponent from './modal/IntervalModalComponent';
 
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 class RegisterComponent extends React.Component<any, any> {
 
@@ -35,7 +35,6 @@ class RegisterComponent extends React.Component<any, any> {
       }
 
       render() {
-          const [t, i18n] = useTranslation();
           const renderCondition = this.props.visibleRange && this.props.data &&
               this.props.data.length > 0;
 
@@ -60,7 +59,7 @@ class RegisterComponent extends React.Component<any, any> {
                               />
                         }
                         <div className='panel panel-default'>
-                              <div className='panel-heading'>{t(this.props.title)}</div>
+                              <div className='panel-heading'>{this.props.t(this.props.title)}</div>
                               <div className='panel-body'>
                                     <div className='smd-table'>
                                     {
@@ -92,4 +91,4 @@ class RegisterComponent extends React.Component<any, any> {
       }
 }
 
-export default RegisterComponent;
+export default withTranslation()(RegisterComponent);

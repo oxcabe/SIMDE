@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { toggleVliwConfigModal } from '../../../actions/modals';
 import { bindActionCreators } from 'redux';
 
@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 class VliwConfigModalComponent extends React.Component<any, any> {
 
-    constructor(props: any) {
+    constructor(public props: any, public state: any) {
         super(props);
 
         this.cancel = this.cancel.bind(this);
@@ -20,7 +20,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
         this.setDefault = this.setDefault.bind(this);
         this.saveVliwConfig = this.saveVliwConfig.bind(this);
 
-        this.setState({
+        this.state = {
             vliwConfig: {
                 integerSumQuantity: 2,
                 integerSumLatency: 1,
@@ -35,7 +35,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                 jumpQuantity: 1,
                 jumpLatency: 2,
             }
-        });
+        };
     }
 
     saveVliwConfig() {
@@ -79,27 +79,25 @@ class VliwConfigModalComponent extends React.Component<any, any> {
     };
 
     render() {
-        const [t, i18n] = useTranslation();
-
         return (
             <Modal show={this.props.isVliwConfigModalOpen} onHide={this.close}>
             <Modal.Header closeButton>
-                <Modal.Title>{t('vliwModal.name')}</Modal.Title>
+                <Modal.Title>{this.props.t('vliwModal.name')}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form className='form form-horizontal'>
                     <div className='form-group'>
                         <div className='col-sm-4 col-sm-offset-4'>
-                            <label>{t('vliwModal.quantity')}</label>
+                            <label>{this.props.t('vliwModal.quantity')}</label>
                         </div>
                         <div className='col-sm-4'>
-                            <label>{t('vliwModal.latency')}</label>
+                            <label>{this.props.t('vliwModal.latency')}</label>
                         </div>
                     </div>
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Integer+')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Integer+')}</legend>
                             </div>
                             <div className='col-sm-4'>
                                 <input
@@ -128,7 +126,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Integerx')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Integerx')}</legend>
                             </div>
                             <div className='col-sm-4'>
                                 <input
@@ -157,7 +155,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Floating+')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Floating+')}</legend>
                             </div>
                             <div className='col-sm-4'>
                                 <input
@@ -186,7 +184,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Floatingx')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Floatingx')}</legend>
                             </div>
                             <div className='col-sm-4'>
                                 <input
@@ -215,7 +213,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Memory')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Memory')}</legend>
                             </div>
                             <div className='col-sm-4'>
                                 <input
@@ -244,7 +242,7 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                     <div className='form-group'>
                         <fieldset>
                             <div className='col-sm-4'>
-                                <legend className='control-label'>{t('vliwModal.Jump')}</legend>
+                                <legend className='control-label'>{this.props.t('vliwModal.Jump')}</legend>
                             </div>
                             <div className='col-sm-4 col-sm-offset-4'>
                                 <input
@@ -262,9 +260,9 @@ class VliwConfigModalComponent extends React.Component<any, any> {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <Button className='btn btn-primary' onClick={this.setDefault}>{t('vliwModal.default')}</Button>
-                <Button onClick={this.cancel}>{t('commonButtons.close')}</Button>
-                <Button className='btn btn-primary' onClick={this.saveVliwConfig}>{t('commonButtons.save')}</Button>
+                <Button className='btn btn-primary' onClick={this.setDefault}>{this.props.t('vliwModal.default')}</Button>
+                <Button onClick={this.cancel}>{this.props.t('commonButtons.close')}</Button>
+                <Button className='btn btn-primary' onClick={this.saveVliwConfig}>{this.props.t('commonButtons.save')}</Button>
             </Modal.Footer>
         </Modal>);
     }
@@ -279,4 +277,4 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators({toggleVliwConfigModal}, dispatch)};
 }
-export default connect(mapStateToProps, mapDispatchToProps)(VliwConfigModalComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(VliwConfigModalComponent));
