@@ -6,15 +6,12 @@ import SuperescalarIntegration from '../../../../integration/superescalar-integr
 class AccessBarComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
+
         this.stepForward = this.stepForward.bind(this);
         this.stepBack = this.stepBack.bind(this);
         this.play = this.play.bind(this);
         this.pause = this.pause.bind(this);
         this.stop = this.stop.bind(this);
-        this.state = {
-            content: null,
-            showableContent: null
-        };
     }
 
     stepForward() {
@@ -80,7 +77,7 @@ class AccessBarComponent extends React.Component<any, any> {
 }
 const mapStateToProps = state => {
     return {
-        cycle: state.cycle
+        cycle: state.Machine.cycle
     };
 };
 export default connect(mapStateToProps)(withTranslation()(AccessBarComponent));

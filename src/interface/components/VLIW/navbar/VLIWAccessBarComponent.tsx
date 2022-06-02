@@ -80,7 +80,7 @@ class VLIWAccessBarComponent extends React.Component<any, any> {
 }
 const mapStateToProps = state => {
     return {
-        cycle: state.cycle
+        cycle: state.Machine.cycle
     };
 };
 export default connect(mapStateToProps)(withTranslation()(VLIWAccessBarComponent));
