@@ -1,11 +1,11 @@
 import * as React from "react";
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-// import projectpage from "./ProjectPageComponent";  // Unused?
+import projectpage from "./ProjectPageComponent";
 import { useTranslation } from "react-i18next";
 
 
-const LandingPageComponent = () => {
-    const [t, _] = useTranslation();
+const LandingPageComponent = (props) => {
+    const [t, i18n] = useTranslation();
 
     return (
       <div className="page">
