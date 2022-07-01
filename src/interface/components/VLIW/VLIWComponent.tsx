@@ -48,7 +48,9 @@ const VLIWComponent = () => {
         </div>
         <Tabs defaultActiveKey={1} id='working-area-tabs'>
             <Tab eventKey={1} title={t('accessBar.vliw')}>
-                <GeneralVLIWTabComponent />
+                <DndProvider backend={HTML5Backend}>
+                    <GeneralVLIWTabComponent />
+                </DndProvider>
             </Tab>
             <Tab eventKey={2} title={t('accessBar.memReg')}>
                 <RegisterVLIWTabComponent />

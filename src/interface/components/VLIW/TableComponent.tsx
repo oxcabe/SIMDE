@@ -2,6 +2,9 @@ import * as React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import VLIWOperationComponent from './VLIWOperationComponent';
+
+
 export function TableComponent(props) {
     const [t, i18n] = useTranslation();
 
