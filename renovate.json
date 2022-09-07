@@ -13,7 +13,10 @@
         "patch"
       ],
       "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch"
+      "groupSlug": "all-minor-patch",
+      "schedule": [
+        "before 6am on Monday"
+      ]
     }
   ]
 }
