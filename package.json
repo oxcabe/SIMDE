@@ -76,7 +76,6 @@
   },
   "devDependencies": {
     "@types/node": "18.7.18",
-    "@types/react-file-reader-input": "^2.0.1",
     "ava": "^4.2.0",
     "codecov": "^3.6.5",
     "coveralls": "3.0.0",
