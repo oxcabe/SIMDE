@@ -37,11 +37,11 @@
   },
   "homepage": "https://github.com/adrianabreu/SIMDE#readme",
   "resolutions": {
-    "@types/react": "17.0.2",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9"
   },
   "dependencies": {
-    "@types/react": "17.0.2",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@types/react-i18next": "8.1.0",
     "babel-loader": "8.2.4",
