@@ -46,22 +46,7 @@ const VLIWComponent = () => {
             <BatchModalComponent />
             <BatchResultsModalComponent />
         </div>
-        <Tabs defaultActiveKey={1} id='working-area-tabs'>
-            <Tab eventKey={1} title={t('accessBar.vliw')}>
-                <DndProvider backend={HTML5Backend}>
-                    <GeneralVLIWTabComponent />
-                </DndProvider>
-            </Tab>
-            <Tab eventKey={2} title={t('accessBar.memReg')}>
-                <RegisterVLIWTabComponent />
-            </Tab>
-        </Tabs>
-        <VLIWLoadModalComponent />
-        <VLIWLoadContentModalComponent />
-        <VliwConfigModalComponent />
-        <OptionsModalComponent />
-        <AutorModalComponent />
-        <BatchModalComponent />
-        <BatchResultsModalComponent />
-    </div>
-);
+    )
+};
+
+export default VLIWComponent;
