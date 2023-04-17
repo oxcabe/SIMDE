@@ -6,6 +6,7 @@
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "scripts": {
+    "info": "npm-scripts-info",
     "dev": "npm run webpack:dev",
     "build": "trash build && tsc -p tsconfig.json && tsc -p config/tsconfig.module.json",
     "dist": "npm run webpack:prod",
