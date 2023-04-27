@@ -286,6 +286,17 @@ export class VLIW extends Machine {
                 this._predR[operation.getPredTrue()] = false;
                 this._predR[operation.getPredFalse()] = true;
             }
+        } else if (operation.opcode === Opcodes.BGT) {
+            if (this._gpr.getContent(operation.getOperand(0)) > this._gpr.getContent(operation.getOperand(1))) {
+                newPC = operation.getOperand(2);
+                this._predR[operation.getPredTrue()] = true;
+                this._predR[operation.getPredFalse()] = false;
+            } else {
+                this._predR[operation.getPredTrue()] = false;
+                this._predR[operation.getPredFalse()] = true;
+            }
+        } else {
+            throw new Error("Invalid jump operation: " + operation.opcode);
         }
         return newPC;
     }

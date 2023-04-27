@@ -52,6 +52,8 @@ export class DependencyChecker {
             case Opcodes.SF:
             case Opcodes.BEQ:
             case Opcodes.BNE:
+            case Opcodes.BGT:
+                break;
             default:
                 throw new Error("Error at checkTargetOperation, unknown opcode: " + Opcodes[operation.opcode]);
                 break;
@@ -100,6 +102,7 @@ export class DependencyChecker {
                 break;
             case Opcodes.BEQ:
             case Opcodes.BNE:
+            case Opcodes.BGT:
                 if (((checkGPR[operation.getOperand(0)].latency > 0) && (checkGPR[operation.getOperand(0)].register < operation.id))
                 || ((checkGPR[operation.getOperand(1)].latency > 0) && (checkGPR[operation.getOperand(1)].register < operation.id))) {
                     result = false;
@@ -140,6 +143,7 @@ export class DependencyChecker {
                 break;
             case Opcodes.BEQ:
             case Opcodes.BNE:
+            case Opcodes.BGT:
                 result = NaTGP[operation.getOperand(0)] || NaTGP[operation.getOperand(1)];
                 break;
             default:
