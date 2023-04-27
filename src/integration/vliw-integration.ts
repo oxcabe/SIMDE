@@ -277,15 +277,25 @@ export class VLIWIntegration extends MachineIntegration {
         if (!this.stopCondition) {
             setTimeout(() => {
                 let machineStatus = this.stepForward();
-                if (!(machineStatus === VLIWError.BREAKPOINT || machineStatus === VLIWError.ENDEXE)) {
-                    this.executionLoop(speed);
-                } else {
-                    if (machineStatus === VLIWError.BREAKPOINT) {
+                let stop: boolean = true;
+                switch (machineStatus) {
+                    case VLIWError.OK:
+                    case VLIWError.PCOUTOFRANGE: //TODO: is this really an error? We always go out of range when we finish the execution or there is a branch at the end
+                        stop = false;
+                    case VLIWError.BREAKPOINT:
                         alert(t('execution.stopped'));
-                    } else if (machineStatus === VLIWError.ENDEXE) {
+                        break;
+                    case VLIWError.ENDEXE:
                         this.finishedExecution = true;
                         alert(t('execution.finished'));
-                    }
+                        break;
+                    default:
+                        alert(t('execution.error') + ": " + VLIWError[machineStatus]);
+                        break;
+                }
+
+                if (!stop) {
+                    this.executionLoop(speed);
                 }
             }, speed);
         } else if (this.stopCondition === ExecutionStatus.STOP) {

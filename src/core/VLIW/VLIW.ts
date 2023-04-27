@@ -62,6 +62,7 @@ export class VLIW extends Machine {
         this._functionalUnitNumbers[index] = (index === FunctionalUnitType.JUMP) ? 1 : n;
     }
 
+    //TODO: These checks functions are never used
     public checkCode() {
         for (let i = 0; i < this._code.getLargeInstructionNumber(); i++) {
             let instruction = this._code.getLargeInstruction(i);
@@ -166,6 +167,8 @@ export class VLIW extends Machine {
 
                 if (!this.functionalUnit[type][index].isFree() ||
                     DependencyChecker.checkNat(instruction.getOperation(i), this._NaTGP, this._NaTFP)) {
+                    //TODO: This really fails when there is a RAW dependency?
+                    return VLIWError.ERRRAW; // VLIW_ERRRA;
                     stopFlow = true;
                     break;
                 }

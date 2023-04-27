@@ -53,6 +53,7 @@ export class DependencyChecker {
             case Opcodes.BEQ:
             case Opcodes.BNE:
             default:
+                throw new Error("Error at checkTargetOperation, unknown opcode: " + Opcodes[operation.opcode]);
                 break;
         }
     }
@@ -105,6 +106,7 @@ export class DependencyChecker {
                 }
                 break;
             default:
+                throw new Error("Error at checkSourceOperands, unknown opcode: " + Opcodes[operation.opcode]);
                 result = true;
                 break;
         }
@@ -141,6 +143,7 @@ export class DependencyChecker {
                 result = NaTGP[operation.getOperand(0)] || NaTGP[operation.getOperand(1)];
                 break;
             default:
+                throw new Error("Error at checkNat, unknown opcode: " + Opcodes[operation.opcode]);
                 result = true;
                 break;
         }

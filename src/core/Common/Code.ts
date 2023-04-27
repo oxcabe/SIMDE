@@ -293,7 +293,7 @@ export class Code {
             case Opcodes.BEQ:
                 return FunctionalUnitType.JUMP;
             default:
-                return FunctionalUnitType.INTEGERSUM;
+                throw new Error("Error at getFunctionalUnitType, unknown opcode : " + Opcodes[this._instructions[index].opcode]);
         }
     }
 
