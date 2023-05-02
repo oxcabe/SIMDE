@@ -181,6 +181,7 @@ export class VLIWIntegration extends MachineIntegration {
             this.executionLoop(speed);
         } else {
             // tslint:disable-next-line:no-empty
+            //TODO: Should we show VLIWErrors and stop execution?
             while (this.vliw.tic() !== VLIWError.ENDEXE) { }
             this.dispatchAllVLIWActions();
             this.finishedExecution = true;
@@ -209,6 +210,7 @@ export class VLIWIntegration extends MachineIntegration {
             }
 
             // tslint:disable-next-line:no-empty
+            //TODO: Should we show VLIWErrors and stop execution?
             while (this.vliw.tic() !== VLIWError.ENDEXE) { }
             results.push(this.vliw.status.cycle);
         }
@@ -282,6 +284,7 @@ export class VLIWIntegration extends MachineIntegration {
                     case VLIWError.OK:
                     case VLIWError.PCOUTOFRANGE: //TODO: is this really an error? We always go out of range when we finish the execution or there is a branch at the end
                         stop = false;
+                        break;
                     case VLIWError.BREAKPOINT:
                         alert(t('execution.stopped'));
                         break;
