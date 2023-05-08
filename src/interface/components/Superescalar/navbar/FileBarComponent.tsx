@@ -77,6 +77,7 @@ class FileBarComponent extends React.Component<any, any> {
 const mapStateToProps = state => {
     return {
         isLoadModalOpen: state.isLoadModalOpen,
+        memory: state.Machine.memory
     }
 }
 
