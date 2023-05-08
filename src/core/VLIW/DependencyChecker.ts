@@ -56,7 +56,6 @@ export class DependencyChecker {
                 break;
             default:
                 throw new Error("Error at checkTargetOperation, unknown opcode: " + Opcodes[operation.opcode]);
-                break;
         }
     }
 
@@ -110,8 +109,6 @@ export class DependencyChecker {
                 break;
             default:
                 throw new Error("Error at checkSourceOperands, unknown opcode: " + Opcodes[operation.opcode]);
-                result = true;
-                break;
         }
         return result;
     }
@@ -148,8 +145,6 @@ export class DependencyChecker {
                 break;
             default:
                 throw new Error("Error at checkNat, unknown opcode: " + Opcodes[operation.opcode]);
-                result = true;
-                break;
         }
         return result;
     }

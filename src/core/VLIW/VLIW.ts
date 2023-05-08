@@ -169,8 +169,6 @@ export class VLIW extends Machine {
                     DependencyChecker.checkNat(instruction.getOperation(i), this._NaTGP, this._NaTFP)) {
                     //TODO: This really fails when there is a RAW dependency?
                     return VLIWError.ERRRAW; // VLIW_ERRRA;
-                    stopFlow = true;
-                    break;
                 }
             }
 
