@@ -26,6 +26,7 @@ class FileBarComponent extends React.Component<any, any> {
                         id={'dropdown-load'}
                     >
                         <Dropdown.Item eventKey="1" onClick={() => { this.props.actions.toggleLoadModal(true) }}>{this.props.t('fileBar.file.load')}</Dropdown.Item>
+                        <Dropdown.Item eventKey="2" onClick={() => { downloadJsonFile('memory.json', this.props.memory); }}>{this.props.t('fileBar.file.download_memory')}</Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         title={this.props.t('fileBar.view.name')}
